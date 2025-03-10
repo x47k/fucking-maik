@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fein</title>
+    <style>
+        body {
+            background-color: black;
+            color: limegreen;
+            font-family: monospace;
+            text-align: center;
+            padding-top: 20%;
+        }
+        #text {
+            font-size: 4rem;
+        }
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 2rem;
+            background: limegreen;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="text"></div><span class="cursor"></span>
+
+    <script>
+        const text = "FEIN";
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("text").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 150);
+            }
+        }
+        typeWriter();
+    </script>
+</body>
+</html>
