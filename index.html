@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fein</title>
+    <title>FEIN</title>
     <style>
         body {
             background-color: black;
@@ -31,15 +31,31 @@
     <div id="text"></div><span class="cursor"></span>
 
     <script>
-        const text = "FEIN";
-        let i = 0;
+        const texts = ["FEIN", "/12g"];
+        let i = 0, j = 0;
+
         function typeWriter() {
-            if (i < text.length) {
-                document.getElementById("text").innerHTML += text.charAt(i);
-                i++;
+            let currentText = texts[i];
+            let currentIndex = j;
+            
+            if (currentIndex < currentText.length) {
+                document.getElementById("text").innerHTML += currentText.charAt(currentIndex);
+                j++;
                 setTimeout(typeWriter, 150);
+            } else {
+                // Esperar un momento antes de borrar el texto
+                setTimeout(() => {
+                    document.getElementById("text").innerHTML = '';
+                    i++;
+                    j = 0;
+                    if (i >= texts.length) {
+                        i = 0; // Volver a "FEIN" al final
+                    }
+                    setTimeout(typeWriter, 500); // Pausa antes de empezar a escribir el siguiente texto
+                }, 500);
             }
         }
+
         typeWriter();
     </script>
 </body>
